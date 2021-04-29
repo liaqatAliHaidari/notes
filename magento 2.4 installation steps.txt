@@ -1,0 +1,24 @@
+
+1- should enable
+init, sopa, sockets, xsl, sodium
+
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition mage2tv
+
+2. database setup
+2.1 create a database
+
+mysql -u root -p
+CREATE USER 'mage2tv'@'localhost' IDENTIFIED BY 'mage2tv2021';
+GRANT ALL PRIVILEGES ON * . * TO 'mage2tv'@'localhost';
+FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'mage2tv'@'localhost';
+
+3. install elasticsearch and unzip and run
+https://www.elastic.co/downloads/elasticsearch
+
+4. replace in Gd2
+if ($url && isset($url['scheme']) && !in_array($url['scheme'], $allowed_schemes) && !file_exists($filename)) {
+
+5. setup the magento
+
+php bin/magento setup:install --base-url=http://localhost/mage2tv --db-host=localhost --db-name=mage2tv_db --db-user=mage2tv --db-password=mage2tv2021 --admin-firstname=admin --admin-lastname=admin --admin-email=ali.richlabz@admin.com --admin-user=admin --admin-password=admin321 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --search-engine=elasticsearch7 --elasticsearch-host="localhost" --elasticsearch-port=9200
